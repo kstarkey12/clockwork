@@ -7,7 +7,7 @@ header {
   padding: 20px;
   text-align: center;
   background-color: black;
-color: white;
+  color: white;
 }
 
 #currentDay {
@@ -21,7 +21,6 @@ color: white;
   padding: 10px;
 }
 
-
 .hour {
   width: 80px;
   text-align: center;
@@ -34,6 +33,12 @@ color: white;
   border: none;
 }
 
+.saveBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .saveBtn {
   background-color: #06aed5;
   color: rgb(0, 0, 0);
@@ -41,6 +46,7 @@ color: white;
   padding: 5px 10px;
   cursor: pointer;
 }
+
 .confirmBtn {
   background-color: #e91818; /* Green */
   color: #fff;
