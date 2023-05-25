@@ -23,12 +23,12 @@ function generateTimeBlocks() {
     description.value = getEventFromLocalStorage(hour);
 
     var removeBtn = document.createElement("button");
-    removeBtn.classList.add("removeBtn");
+    removeBtn.classList.add("confirmBtn");
     removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
     removeBtn.addEventListener("click", removeEvent.bind(null, hour, description));
 
     var completeBtn = document.createElement("button");
-    completeBtn.classList.add("completeBtn");
+    completeBtn.classList.add("deleteBtn");
     completeBtn.innerHTML = '<i class="fas fa-check"></i>';
     completeBtn.addEventListener("click", markAsComplete.bind(null, hour, description));
 
