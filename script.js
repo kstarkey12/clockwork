@@ -87,6 +87,22 @@ function markAsComplete(hour, description) {
   }
 }
 
+// Function to save events to local storage
+function saveEvents() {
+  var timeBlocks = document.getElementsByClassName("time-block");
+
+  for (var i = 0; i < timeBlocks.length; i++) {
+    var timeBlock = timeBlocks[i];
+    var hour = parseInt(timeBlock.querySelector(".hour").textContent);
+    var description = timeBlock.querySelector(".description").value;
+
+    localStorage.setItem("event_" + hour, description);
+  }
+}
+
 // Call the necessary functions when the page loads
 displayCurrentDay();
 generateTimeBlocks();
+
+// Add event listener to the save button
+document.getElementById("saveBtn").addEventListener("click", saveEvents);
