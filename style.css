@@ -1,10 +1,13 @@
 body {
   font-family: 'Fira Sans', sans-serif;
+  background-color: gray;
 }
 
 header {
   padding: 20px;
   text-align: center;
+  background-color: black;
+color: white;
 }
 
 #currentDay {
@@ -17,6 +20,7 @@ header {
   margin-bottom: 10px;
   padding: 10px;
 }
+
 
 .hour {
   width: 80px;
@@ -32,7 +36,22 @@ header {
 
 .saveBtn {
   background-color: #06aed5;
-  color: white;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.confirmBtn {
+  background-color: #e91818; /* Green */
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  background-color: #0ecf2e; /* Red */
+  color: #fff;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
