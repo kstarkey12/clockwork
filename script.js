@@ -22,10 +22,15 @@ function generateTimeBlocks() {
     description.classList.add("description");
     description.value = getEventFromLocalStorage(hour);
 
-    var saveBtn = document.createElement("button");
-    saveBtn.classList.add("saveBtn");
-    saveBtn.innerHTML = '<i class="fas fa-save"></i>';
-    saveBtn.addEventListener("click", saveEventToLocalStorage.bind(null, hour));
+    var removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    removeBtn.addEventListener("click", removeEvent.bind(null, hour, description));
+
+    var completeBtn = document.createElement("button");
+    completeBtn.classList.add("completeBtn");
+    completeBtn.innerHTML = '<i class="fas fa-check"></i>';
+    completeBtn.addEventListener("click", markAsComplete.bind(null, hour, description));
 
     if (hour < currentTime) {
       timeBlock.classList.add("past");
@@ -37,17 +42,22 @@ function generateTimeBlocks() {
 
     timeBlock.appendChild(hourText);
     timeBlock.appendChild(description);
-    timeBlock.appendChild(saveBtn);
+    timeBlock.appendChild(removeBtn);
+    timeBlock.appendChild(completeBtn);
 
     document.getElementById("timeBlocks").appendChild(timeBlock);
   }
 }
 
-// Helper function to format the hour
+// Function to format hour in AM/PM format
 function formatHour(hour) {
-  var suffix = hour >= 12 ? "PM" : "AM";
-  var formattedHour = hour % 12 || 12;
-  return formattedHour + suffix;
+  if (hour === 12) {
+    return "12PM";
+  } else if (hour > 12) {
+    return (hour - 12) + "PM";
+  } else {
+    return hour + "AM";
+  }
 }
 
 // Function to get event from local storage
@@ -55,10 +65,26 @@ function getEventFromLocalStorage(hour) {
   return localStorage.getItem("event_" + hour) || "";
 }
 
-// Function to save event to local storage
-function saveEventToLocalStorage(hour) {
-  var description = document.querySelector("#timeBlocks #hour-" + hour + " .description").value;
-  localStorage.setItem("event_" + hour, description);
+// Function to remove event and update UI
+function removeEvent(hour, description) {
+  localStorage.removeItem("event_" + hour);
+  description.value = "";
+  var timeBlock = description.parentNode;
+  timeBlock.classList.remove("completed");
+  timeBlock.style.backgroundColor = "";
+}
+
+// Function to mark as complete and update UI
+function markAsComplete(hour, description) {
+  var timeBlock = description.parentNode;
+
+  if (timeBlock.classList.contains("completed")) {
+    timeBlock.classList.remove("completed");
+    description.style.backgroundColor = "";
+  } else {
+    timeBlock.classList.add("completed");
+    description.style.backgroundColor = "green";
+  }
 }
 
 // Call the necessary functions when the page loads
