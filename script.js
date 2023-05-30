@@ -34,6 +34,7 @@ function generateTimeBlocks() {
 
     if (hour < currentTime) {
       timeBlock.classList.add("past");
+      description.disabled = true; // Disable editing for past time blocks
     } else if (hour === currentTime) {
       timeBlock.classList.add("present");
     } else {
@@ -48,6 +49,7 @@ function generateTimeBlocks() {
     document.getElementById("timeBlocks").appendChild(timeBlock);
   }
 }
+
 
 // Function to format hour in AM/PM format
 function formatHour(hour) {
